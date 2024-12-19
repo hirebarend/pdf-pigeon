@@ -51,6 +51,7 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
         .status(200)
         .header('Content-Type', 'application/pdf')
         .header('X-Custom-Url', url)
+        .header('Access-Control-Expose-Headers', 'X-Custom-Url')
         .send(buffer);
 
       return;
