@@ -14,3 +14,7 @@
 
 //   expect(response.data.length).toBe(1038328);
 // });
+
+test('#test', () => {
+  expect(1).toBe(1);
+});
