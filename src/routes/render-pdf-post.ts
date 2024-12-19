@@ -1,6 +1,6 @@
 import { FastifyReply, RouteOptions } from 'fastify';
 import { Page } from 'puppeteer';
-import { getBrowserPage, getContainer } from '../core';
+import { getBrowserPage, getContainer, uploadBuffer } from '../core';
 
 async function handle(request: any, reply: FastifyReply): Promise<void> {
   const container = await getContainer();
@@ -39,6 +39,22 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
         : undefined,
       printBackground: true,
     });
+
+    if (process.env.AWS_S3_BUCKET) {
+      const url: string = await uploadBuffer(
+        Buffer.from(buffer),
+        undefined,
+        'application/pdf',
+      );
+
+      reply
+        .status(200)
+        .header('Content-Type', 'application/pdf')
+        .header('X-Custom-Url', url)
+        .send(buffer);
+
+      return;
+    }
 
     reply.status(200).header('Content-Type', 'application/pdf').send(buffer);
   } finally {

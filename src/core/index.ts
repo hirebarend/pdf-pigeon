@@ -1,2 +1,2 @@
-export * from './types';
+export * from './gateways';
 export * from './container';
