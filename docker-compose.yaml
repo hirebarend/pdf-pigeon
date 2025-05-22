@@ -1,0 +1,65 @@
+services:
+  nginx-proxy:
+    image: nginxproxy/nginx-proxy:latest
+    container_name: nginx-proxy
+    restart: unless-stopped
+    labels:
+      - "com.github.nginx-proxy.nginx=true"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs:rw
+      - ./nginx/vhost:/etc/nginx/vhost.d
+      - ./nginx/html:/usr/share/nginx/html
+      - ./nginx/dhparam:/etc/nginx/dhparam
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    environment:
+      - ENABLE_IPV6=true
+    networks:
+      - proxy_network
+
+  acme-companion:
+    image: nginxproxy/acme-companion:latest
+    container_name: acme-companion
+    restart: unless-stopped
+    depends_on:
+      - nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./nginx/certs:/etc/nginx/certs:rw
+      - ./nginx/vhost:/etc/nginx/vhost.d
+      - ./nginx/html:/usr/share/nginx/html
+    environment:
+      - DEFAULT_EMAIL=hirebarend@gmail.com
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+    networks:
+      - proxy_network
+
+  lnkbrd:
+    image: ghcr.io/hirebarend/pdf-pigeon:main
+    container_name: lnkbrd
+    restart: unless-stopped
+    env_file:
+      - prod.env
+    environment:
+      - LETSENCRYPT_HOST=pdfpigeon.com
+      - HOST=pdfpigeon.com
+      - MONGODB_DATABASE_NAME=pdf-pigeon
+      - VIRTUAL_HOST=pdfpigeon.com
+      - VIRTUAL_PORT=8080
+    networks:
+      - proxy_network
+
+  watchtower:
+    image: containrrr/watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_POLL_INTERVAL=900
+
+networks:
+  proxy_network:
+    driver: bridge

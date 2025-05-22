@@ -28,12 +28,6 @@ npm run dev
 # open http://localhost:8080 in your browser
 ```
 
-## Deploy to Kubernetes
-
-```bash
-helm install pdf-pigeon ./helm-charts
-```
-
 ## Contributing
 
 We love our contributors! Here's how you can contribute:
