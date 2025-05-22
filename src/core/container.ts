@@ -83,6 +83,8 @@ export async function getBrowserPage(
   }
 
   if (url) {
+    await page.setCacheEnabled(false);
+
     await page.goto(url, {
       timeout: 120000,
       waitUntil: 'networkidle0',
