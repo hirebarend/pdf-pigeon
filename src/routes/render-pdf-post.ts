@@ -22,6 +22,23 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
     request.body.url || null,
   );
 
+  // await page.addStyleTag({
+  //   content: `
+  //     body::before {
+  //       color: rgba(0, 0, 0, 0.1);
+  //       content: "CONFIDENTIAL";
+  //       left: 50%;
+  //       position: fixed;
+  //       font-size: 60px;
+  //       pointer-events: none;
+  //       top: 50%;
+  //       transform: translate(-50%, -50%) rotate(-45deg);
+  //       white-space: nowrap;
+  //       z-index: 0;
+  //     }
+  //   `,
+  // });
+
   try {
     const buffer: Uint8Array = await page.pdf({
       displayHeaderFooter:
