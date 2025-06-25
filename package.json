@@ -16,7 +16,7 @@
     "@types/node": "^22.15.33",
     "@types/qs": "^6.14.0",
     "@types/sanitize-html": "^2.16.0",
-    "jest": "^30.0.2",
+    "jest": "^30.0.3",
     "prettier": "^3.6.0",
     "typescript": "^5.8.3"
   },
