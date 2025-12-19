@@ -26,7 +26,7 @@ function initializeFirebaseApp(): admin.app.App {
   return firebaseApp;
 }
 
-export async function uploadBufferToFirebaseCloudStorage(
+export async function uploadBufferToFirebaseStorage(
   buffer: Buffer,
   name: string | undefined = undefined,
   mimeType: string = 'application/octet-stream',

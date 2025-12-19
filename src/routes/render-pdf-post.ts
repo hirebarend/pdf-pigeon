@@ -3,7 +3,7 @@ import { Page } from 'puppeteer';
 import {
   getBrowserPage,
   getContainer,
-  uploadBufferToFirebaseCloudStorage,
+  uploadBufferToFirebaseStorage,
 } from '../core';
 
 async function handle(request: any, reply: FastifyReply): Promise<void> {
@@ -64,7 +64,7 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
     });
 
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
-      const url: string = await uploadBufferToFirebaseCloudStorage(
+      const url: string = await uploadBufferToFirebaseStorage(
         Buffer.from(buffer),
         undefined,
         'application/pdf',
