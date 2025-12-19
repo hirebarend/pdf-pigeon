@@ -9,7 +9,7 @@
     "dev": "npm run build && node dist/main.js",
     "lint": "prettier --write --config prettier.config.js --list-different src/**/*.ts",
     "start": "node ./dist/main.js",
-    "test": "tsc && jest --coverage --testPathPattern ./dist/.*\\.test\\.js$"
+    "test": "tsc && jest --coverage --testPathPatterns ./dist/.*\\.test\\.js$"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",

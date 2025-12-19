@@ -7,9 +7,7 @@ export async function Logger(
   collectionName: string,
 ) {
   const mongoClient = await MongoClient.connect(connectionString);
-
   const db: Db = mongoClient.db(dbName);
-
   const collection: Collection = db.collection(collectionName);
 
   return (
@@ -18,14 +16,12 @@ export async function Logger(
     done: HookHandlerDoneFunction,
   ) => {
     try {
-      // Exclude all OPTIONS HTTP method requests
       if (request.method === 'OPTIONS') {
         done();
 
         return;
       }
 
-      // Exclude specific routes
       if (['/api/v1/health', '/api/v1/ping'].includes(request.url)) {
         done();
 
@@ -52,7 +48,6 @@ export async function Logger(
         timestampUnix: Math.floor(new Date().getTime() / 100),
         url: request.url,
       };
-
       collection
         .insertOne(payload)
         .then(() => done())

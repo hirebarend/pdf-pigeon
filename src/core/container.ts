@@ -1,5 +1,4 @@
 import juice from 'juice';
-import * as mongoDb from 'mongodb';
 import puppeteer, { Browser, executablePath, Page } from 'puppeteer';
 import sanitizeHtml from 'sanitize-html';
 
@@ -13,6 +12,7 @@ export async function getContainer() {
   if (container) {
     return container;
   }
+
   container = {
     browser: await puppeteer.launch(
       process.env.DEBUG
@@ -47,17 +47,14 @@ export async function getBrowserPage(
       allowedAttributes: false,
       allowedTags: false,
       exclusiveFilter: (element) => {
-        // Remove iframe tag
         if (element.tag === 'iframe') {
           return true;
         }
 
-        // Remove script tag
         if (element.tag === 'script') {
           return true;
         }
 
-        // Remove img tag where src attribute is not a URL starting with http: or https:
         if (
           element.tag === 'img' &&
           element.attribs.src &&

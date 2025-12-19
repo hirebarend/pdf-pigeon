@@ -1,6 +1,5 @@
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import axios from 'axios';
-import { faker } from '@faker-js/faker';
 
 export async function uploadBuffer(
   buffer: Buffer,
@@ -8,7 +7,7 @@ export async function uploadBuffer(
   mimeType: string = 'application/octet-stream',
 ): Promise<string> {
   if (!name) {
-    name = faker.string.uuid();
+    name = crypto.randomUUID();
   }
 
   const s3Client = new S3Client({ region: process.env.AWS_REGION });
