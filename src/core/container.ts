@@ -18,11 +18,13 @@ export async function getContainer() {
       process.env.DEBUG
         ? {
             args: ['--disable-gpu', '--no-sandbox'],
+            defaultViewport: null,
             executablePath: executablePath(),
             headless: false,
           }
         : {
             args: ['--disable-gpu', '--headless', '--no-sandbox'],
+            defaultViewport: null,
             executablePath: '/usr/bin/google-chrome',
             headless: true,
           },
@@ -40,7 +42,12 @@ export async function getBrowserPage(
 ): Promise<Page> {
   const page: Page = await browser.newPage();
 
-  await page.setViewport(viewport);
+  await page.setViewport({
+    deviceScaleFactor: 1,
+    height: viewport.height,
+    isMobile: false,
+    width: viewport.width,
+  });
 
   if (html) {
     const sanitzedHtml: string = sanitizeHtml(html, {
