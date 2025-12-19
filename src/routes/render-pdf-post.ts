@@ -24,6 +24,7 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
     container.browser,
     request.body.html || null,
     request.body.url || null,
+    { height: 3508, width: 2480 },
   );
 
   if (request.body.watermark) {

@@ -89,10 +89,29 @@ export async function getBrowserPage(
   if (url) {
     await page.setCacheEnabled(false);
 
+    const cdpSession = await page.createCDPSession();
+
+    await cdpSession.send('Emulation.setDeviceMetricsOverride', {
+      deviceScaleFactor: 1,
+      height: viewport.height,
+      mobile: false,
+      width: viewport.width,
+    });
+
     await page.goto(url, {
       timeout: 120000,
       waitUntil: 'networkidle0',
     });
+
+    const dimensions = await page.evaluate(() => {
+      return {
+        width: document.documentElement.clientWidth,
+        height: document.documentElement.clientHeight,
+        deviceScaleFactor: window.devicePixelRatio,
+      };
+    });
+
+    console.log('Actual Page Dimensions:', dimensions);
   }
 
   return page;
