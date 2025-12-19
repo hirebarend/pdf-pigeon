@@ -62,6 +62,7 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
           }
         : undefined,
       printBackground: true,
+      scale: 0.7,
     });
 
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
