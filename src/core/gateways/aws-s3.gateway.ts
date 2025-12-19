@@ -1,7 +1,7 @@
 import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
-import axios from 'axios';
 
-export async function uploadBuffer(
+
+export async function uploadBufferToAwsS3(
   buffer: Buffer,
   name: string | undefined = undefined,
   mimeType: string = 'application/octet-stream',
@@ -25,17 +25,3 @@ export async function uploadBuffer(
   return `https://${process.env.AWS_S3_BUCKET}.s3.amazonaws.com/${name}`;
 }
 
-export async function uploadFromUrl(
-  url: string,
-  name: string | undefined = undefined,
-): Promise<string> {
-  const response = await axios.get(url, {
-    responseType: 'arraybuffer',
-  });
-
-  return await uploadBuffer(
-    Buffer.from(response.data),
-    name,
-    response.headers['Content-Type'] as string,
-  );
-}

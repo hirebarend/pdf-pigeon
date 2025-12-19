@@ -1,6 +1,10 @@
 import { FastifyReply, RouteOptions } from 'fastify';
 import { Page } from 'puppeteer';
-import { getBrowserPage, getContainer, uploadBuffer } from '../core';
+import {
+  getBrowserPage,
+  getContainer,
+  uploadBufferToFirebaseCloudStorage,
+} from '../core';
 
 async function handle(request: any, reply: FastifyReply): Promise<void> {
   const container = await getContainer();
@@ -59,8 +63,8 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
       printBackground: true,
     });
 
-    if (process.env.AWS_S3_BUCKET) {
-      const url: string = await uploadBuffer(
+    if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+      const url: string = await uploadBufferToFirebaseCloudStorage(
         Buffer.from(buffer),
         undefined,
         'application/pdf',
