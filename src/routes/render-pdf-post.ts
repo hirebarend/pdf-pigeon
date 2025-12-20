@@ -27,6 +27,12 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
     { height: 3508, width: 2480 },
   );
 
+  if (request.body.title) {
+    await page.evaluate((title) => {
+      document.title = title;
+    }, request.body.title);
+  }
+
   if (request.body.watermark) {
     await page.addStyleTag({
       content: `
@@ -110,6 +116,7 @@ export const RENDER_PDF_POST: RouteOptions = {
             top: { type: 'string', nullable: true },
           },
         },
+        title: { type: 'string', nullable: true },
         url: { type: 'string', nullable: true },
         watermark: { type: 'string', nullable: true },
       },
