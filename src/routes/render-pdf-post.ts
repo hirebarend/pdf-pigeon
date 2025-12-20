@@ -74,7 +74,7 @@ async function handle(request: any, reply: FastifyReply): Promise<void> {
     if (process.env.FIREBASE_SERVICE_ACCOUNT) {
       const url: string = await uploadBufferToFirebaseStorage(
         Buffer.from(buffer),
-        undefined,
+        request.body.name,
         'application/pdf',
       );
 
@@ -116,6 +116,7 @@ export const RENDER_PDF_POST: RouteOptions = {
             top: { type: 'string', nullable: true },
           },
         },
+        name: { type: 'string', nullable: true },
         title: { type: 'string', nullable: true },
         url: { type: 'string', nullable: true },
         watermark: { type: 'string', nullable: true },
