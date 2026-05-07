@@ -14,7 +14,7 @@
   "devDependencies": {
     "@types/jest": "^30.0.0",
     "@types/node": "^25.6.0",
-    "@types/qs": "^6.15.0",
+    "@types/qs": "^6.15.1",
     "@types/sanitize-html": "^2.16.1",
     "jest": "^30.3.0",
     "prettier": "^3.8.3",
