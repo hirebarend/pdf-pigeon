@@ -34,6 +34,6 @@
     "mongodb": "^7.2.0",
     "puppeteer": "^24.43.1",
     "qs": "^6.15.1",
-    "sanitize-html": "^2.17.3"
+    "sanitize-html": "^2.17.4"
   }
 }
