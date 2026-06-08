@@ -29,7 +29,7 @@
     "axios": "^1.17.0",
     "dotenv": "^17.4.2",
     "fastify": "^5.8.5",
-    "firebase-admin": "^13.10.0",
+    "firebase-admin": "^14.0.0",
     "juice": "^12.1.0",
     "mongodb": "^7.2.0",
     "puppeteer": "^25.1.0",
