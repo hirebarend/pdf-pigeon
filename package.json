@@ -28,7 +28,7 @@
     "@fastify/swagger-ui": "^6.0.0",
     "axios": "^1.18.1",
     "dotenv": "^17.4.2",
-    "fastify": "^5.8.5",
+    "fastify": "^5.9.0",
     "firebase-admin": "^14.1.0",
     "juice": "^12.1.1",
     "mongodb": "^7.4.0",
