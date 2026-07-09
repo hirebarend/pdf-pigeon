@@ -21,7 +21,7 @@
     "typescript": "^7.0.2"
   },
   "dependencies": {
-    "@aws-sdk/client-s3": "^3.1082.0",
+    "@aws-sdk/client-s3": "^3.1083.0",
     "@faker-js/faker": "^10.5.0",
     "@fastify/cors": "^11.3.0",
     "@fastify/swagger": "^9.8.0",
