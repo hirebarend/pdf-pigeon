@@ -24,7 +24,7 @@
     "@aws-sdk/client-s3": "^3.1086.0",
     "@faker-js/faker": "^10.5.0",
     "@fastify/cors": "^11.3.0",
-    "@fastify/swagger": "^9.8.0",
+    "@fastify/swagger": "^9.8.1",
     "@fastify/swagger-ui": "^6.1.0",
     "axios": "^1.18.1",
     "dotenv": "^17.4.2",
