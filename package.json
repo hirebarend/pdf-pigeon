@@ -17,7 +17,7 @@
     "@types/qs": "^6.15.1",
     "@types/sanitize-html": "^2.16.2",
     "jest": "^30.5.2",
-    "prettier": "^3.9.9",
+    "prettier": "^3.9.10",
     "typescript": "^7.0.2"
   },
   "dependencies": {
