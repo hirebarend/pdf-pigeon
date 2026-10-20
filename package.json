@@ -32,7 +32,7 @@
     "firebase-admin": "^14.5.0",
     "juice": "^12.2.0",
     "mongodb": "^7.7.0",
-    "puppeteer": "^25.14.0",
+    "puppeteer": "^25.15.0",
     "qs": "^6.16.1",
     "sanitize-html": "^2.18.1"
   }
