@@ -30,7 +30,7 @@
     "dotenv": "^18.0.9",
     "fastify": "^5.12.7",
     "firebase-admin": "^14.5.0",
-    "juice": "^12.2.0",
+    "juice": "^12.2.1",
     "mongodb": "^7.7.0",
     "puppeteer": "^25.16.0",
     "qs": "^6.16.1",
